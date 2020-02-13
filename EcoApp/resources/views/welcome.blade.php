@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>E-commerce App</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -21,7 +21,7 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 70vh;
             }
 
             .flex-center {
@@ -45,7 +45,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 30px;
             }
 
             .links > a {
@@ -60,6 +60,20 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            table {
+                border: 1px solid #ccc;
+                width: 100vh;
+            }
+
+            table tr td{
+                border: 1px solid #ccc;
+                height: 10vh;
+            }
+            a {
+                text-decoration: none;
+                font-weight: bold;
             }
         </style>
     </head>
@@ -81,17 +95,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    E-commerce Web Application
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <table>
+                        <tr>
+                            <td><a href="{{ url('/categories') }}">View Categories</a></td>
+                            <td><a href="{{ url('/products') }}">View Products</a></td>
+                        </tr>
+                        <tr>
+                            <td>Total Products</td>
+                            <td>Total Categories</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
