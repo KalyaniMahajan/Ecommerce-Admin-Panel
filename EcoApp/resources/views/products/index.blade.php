@@ -30,11 +30,11 @@
                             <tr>
                                 <td>{{ $product->name}}</td>
                                 <td>
-                                    <img src="{{ asset('/images/'.$product->main_image) }}" alt="Image"/>
+                                    <img src="{{ asset('/images/'.$product->main_image) }}" alt="Image" style="width: 30px;height: 25px;" />
                                 </td>
                                 <td>{{ $product->category->name }}</td>
                                 <td>
-                                    <a href="{{ route('product.gallery', ['product'=> $product->id]) }}" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-picture"></i></a>
+                                    <a href="{{ route('gallery', ['product'=> $product->id]) }}" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-picture"></i></a>
                                     <a href="{{ route('products.edit', ['product'=> $product->id]) }}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-edit"></i></a>
                                     <form action="{{ route('products.destroy', ['product'=> $product->id]) }}" method="POST" style="display: inline-block;">
                                         @method('DELETE')

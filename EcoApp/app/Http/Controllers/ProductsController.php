@@ -49,9 +49,11 @@ class ProductsController extends Controller
         $product->discounted_price = $request->discount_price;
 
         if ($request->file('image') ) {
-            $imageName = time().'.'.$request->file('image')->getClientOriginalExtension();
+            $fileName = $product->name."-".time().'.'.$request->file('image')->getClientOriginalExtension();
+            //dd($fileName);
+            $product->main_image = $fileName;
 
-            $request->file('image')->move(public_path('images'), $imageName);
+            $request->file('image')->move(public_path('images'), $fileName);
         }
 
         if ($product->save()) {
@@ -97,31 +99,16 @@ class ProductsController extends Controller
         $product->color = $request->color ? $request->color : '#ffffff';
         $product->actual_price = $request->actual_price;
         $product->discounted_price = $request->discount_price;
-        
+
         if ($request->file('image') ) {
             $fileName = $product->name."-".time().'.'.$request->file('image')->getClientOriginalExtension();
 
             if ( $request->file('image')->storeAs('public/product', $fileName) ) {
                 $product->main_image = $fileName;
             }
-
         }
 
         if ($product->save()) {
-
-            if ($request->file('gallery')) {
-                $files = $request->file('gallery');
-                foreach ($files as $file) {
-                    $gallery = new Gallery;
-                    $fileName = $product->name."-".time().'.'.$file->getClientOriginalExtension();
-                    if ( $file->storeAs('public/product', $fileName) ) {
-                        $gallery->image_url = $fileName;
-                        $gallery->product_id = $product->id;
-                        $gallery->save();
-                    }
-                }
-            }
-
             return redirect()->route('products.index');
         }
     }
@@ -143,10 +130,5 @@ class ProductsController extends Controller
         if ($product->delete()) {
             return redirect()->route('products.index');
         }
-    }
-
-    public function gallery(Product $product)
-    {
-        return view('products.gallery')->with(compact(['product']));
     }
 }

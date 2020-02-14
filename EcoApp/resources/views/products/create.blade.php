@@ -6,8 +6,8 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    Products
-                    <a href="{{ route('products.create') }}" class="btn btn-primary float-right">Create product</a>
+                    Add Product
+                    <a href="{{ route('products.index') }}" class="btn btn-primary float-right">View product</a>
                 </div>
 
                 <div class="card-body">
@@ -26,8 +26,8 @@
                         <div class="form-group">
                             <label for="category">Category:</label>
                             <select class="form-control" name="category">
-                                @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach($categories as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                 @endforeach
                             </select>
                             <span class="text-danger">{{ $errors->first('category') }}</span>

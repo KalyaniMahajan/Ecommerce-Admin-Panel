@@ -6,7 +6,8 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    Gallery
+                    Gallery - {{$product->name}}
+                    <a href="{{ route('products.index') }}" class="btn btn-primary float-right">Back</a>
                 </div>
 
                 <div class="card-body">
@@ -18,19 +19,39 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Image</th>
+                                <td>
+                                    <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <label for="image">Add Image:</label>
+                                                <input type="file" id="gallery_img" name="gallery_img[]" multiple>
+                                                <span class="text-danger">{{ $errors->first('gallery_img') }}</span>
+                                                <input type="hidden" name="prod_id" value="{{$product->id}}">
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                    </form> <br/>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($product->gallery as $product)
                             <tr>
                                 <td>
-                                    <a href="{{url('storage/product/'.$product->image_url)}}" target="__blank">
-                                        <img src="{{url('storage/product/'.$product->image_url)}}" class="img-thumbnail" alt="Image" style="max-width: 150px">
-                                    </a>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div id="mdb-lightbox-ui"></div>
+                                        <div class="mdb-lightbox">
+                                        @foreach($product->gallery as $product)
+                                          <figure class="col-md-4" style="float: left;">
+                                            <a href="{{ asset('/prod_imgs/'.$product->image_url) }}" data-size="1600x1067">
+                                              <img alt="picture" src="{{ asset('/prod_imgs/'.$product->image_url) }}" class="img-fluid" style="width: 300px; height: 150px;">
+                                            </a>
+                                          </figure>
+                                        @endforeach
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -39,3 +60,9 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript">
+    // MDB Lightbox Init
+    $(function () {
+    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+    });
+</script>

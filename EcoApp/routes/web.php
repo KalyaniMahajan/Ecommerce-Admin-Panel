@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('categories', 'CategoriesController');
 Route::resource('products', 'ProductsController');
-Route::get('products/{product}/gallery', 'ProductsController@gallery')->name('product.gallery');
-Route::resource('galleries', 'GalleryController');
+Route::resource('gallery', 'GalleryController');
+
+//Add all photos related to product
+Route::get('products/{product}/gallery', 'GalleryController@index')->name('gallery');
 
 

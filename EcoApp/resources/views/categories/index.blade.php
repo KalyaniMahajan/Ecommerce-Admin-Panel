@@ -7,7 +7,8 @@
             <div class="card">
                 <div class="card-header">
                     Categories
-                    <a href="{{ route('categories.create') }}" class="btn btn-success float-right">Add Category</a>
+                    <a href="{{ url('/') }}" class="btn btn-primary float-right">Back</a>
+                    <a href="{{ route('categories.create') }}" class="btn btn-success float-right" style="margin-right: 5px;">Add Category</a>
                 </div>
 
                 <div class="card-body">

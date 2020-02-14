@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    Products
-                    <a href="{{ route('products.create') }}" class="btn btn-primary float-right">Create product</a>
+                    Edit Products
+                    <a href="{{ route('products.index') }}" class="btn btn-primary float-right">View product</a>
                 </div>
 
                 <div class="card-body">
@@ -53,14 +53,7 @@
                             <input type="file" id="image" name="image">
                             <span class="text-danger">{{ $errors->first('image') }}</span>
                         </div>
-
-                        <div class="form-group">
-                            <label for="image">Add Gallery:</label>
-                            <input type="file" id="gallery" name="gallery[]" multiple>
-                            <span class="text-danger">{{ $errors->first('gallery') }}</span>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </form>
                 </div>
             </div>
